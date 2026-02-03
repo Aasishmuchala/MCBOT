@@ -147,7 +147,8 @@ class TextureGenAction(unreal.ToolMenuEntryScript):
                     new_asset.set_editor_property("compression_settings", unreal.TextureCompressionSettings.TC_MASKS)
                     new_asset.set_editor_property("srgb", False)
                 
-                new_asset.post_edit_change()
+                # new_asset.post_edit_change() # Removed to prevent AttributeError
+                unreal.EditorAssetLibrary.save_loaded_asset(new_asset)
                 imported_assets[map_type] = new_asset
 
         # 4. Create Material
